@@ -12,46 +12,44 @@ To run this program, you can use Remix, an online Solidity IDE. To get started, 
 
 Once you are on the Remix website, create a new file by clicking on the "+" icon in the left-hand sidebar. Save the file with a .sol extension (e.g., HelloWorld.sol). Copy and paste the following code into the file:
 
-pragma solidity ^0.8.4;
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.18;
 
-contract HelloWorld {
-    function sayHello() public pure returns (string memory) {
-        return "Hello World!";
+contract ATHENATOKEN {
+
+    // public variables here
+    string public TokenName = "ATHENA";
+    string public TokenAbbrv = "AEN";
+    uint public TotalSupply = 0;
+
+    // mapping variable here
+    mapping(address => uint) public balances;
+
+    // mint function
+    function mint(address _address, uint _value) public {
+        TotalSupply += _value;
+        balances[_address] += _value;
     }
+    // burn function
+     function burn(address _address, uint _value) public {
+         if (balances[_address] >= _value) {
+            TotalSupply -= _value;
+            balances[_address] -= _value;
+            }
+    }
+
 }
-To compile the code, click on the "Solidity Compiler" tab in the left-hand sidebar. Make sure the "Compiler" option is set to "0.8.4" (or another compatible version), and then click on the "Compile HelloWorld.sol" button.
+To compile the code, click on the "Solidity Compiler" tab in the left-hand sidebar. Make sure the "Compiler" option is set to "0.8.18" (or another compatible version), and then click on the "Compile ATHENA Token.sol" button.
 
-Once the code is compiled, you can deploy the contract by clicking on the "Deploy & Run Transactions" tab in the left-hand sidebar. Select the "HelloWorld" contract from the dropdown menu, and then click on the "Deploy" button.
+Once the code is compiled, you can deploy the contract by clicking on the "Deploy & Run Transactions" tab in the left-hand sidebar. Select the "ATHENA Token" contract from the dropdown menu, and then click on the "Deploy" button.
 
-Once the contract is deployed, you can interact with it by calling the sayHello function. Click on the "HelloWorld" contract in the left-hand sidebar, and then click on the "sayHello" function. Finally, click on the "transact" button to execute the function and retrieve the "Hello World!" message.
-### Installing
-
-* How/where to download your program
-* Any modifications needed to be made to files/folders
-
-### Executing program
-
-* How to run the program
-* Step-by-step bullets
-```
-code blocks for commands
-```
-
-## Help
-
-Any advise for common problems or issues.
-```
-command to run if program contains helper info
-```
+Once the contract is deployed, you can interact with it by calling the mint and burn function. Click on the "ATHENATOKEN" contract in the left-hand sidebar, and then click on the mint and burn function to key in amount of token to mint or burn. Finally, click on the "transact" button to execute the functions.
 
 ## Authors
-
-Contributors names and contact info
-
-ex. Dominique Pizzie  
-ex. [@DomPizzie](https://twitter.com/dompizzie)
+Quincandy
+https://twitter.com/metacraftersio
 
 
 ## License
 
-This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
+This project is licensed under the MIT License - see the LICENSE.md file for details
